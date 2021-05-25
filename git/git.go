@@ -19,7 +19,7 @@ func NewGit(cfg *config.Config) *Git {
 	}
 }
 
-func (g *Git) SetName() error{
+func (g *Git) SetName() error {
 	cmd := exec.Command("git", "config", "--local", "user.name", g.Cfg.Username)
 	cmd.Dir = g.Cfg.ProjectRootPath
 	return cmd.Run()

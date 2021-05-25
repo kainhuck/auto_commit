@@ -32,6 +32,7 @@ type Config struct {
 	CommitMsg       string `json:"commit_msg"`     // todo
 	CheckInterval   int    `json:"check_interval"` // 单位毫秒
 	Username        string `json:"username"`
+	Watching        bool   `json:"watching"` // 是否监视该项目
 }
 
 func (c *Config) Load(fileName string) {
@@ -58,7 +59,7 @@ func MkTplConfig() {
 		ProjectRootPath: "Your/Project/Path",
 		CommitMsg:       "%d commit by auto_commit",
 		CheckInterval:   3000,
-		Username: "your_name",
+		Username:        "your_name",
 	}
 	bts, _ := json.MarshalIndent(defaultCfg, "", "	")
 	f.Write(bts)
