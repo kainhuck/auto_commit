@@ -8,5 +8,18 @@
 
 模版文件介绍：
 ```json
-
+{
+  "project_root_path": "Your/Project/Path",
+  "commit_msg": "%d commit by auto_commit",
+  "check_interval": 3000,
+  "username": "your_name"
+}
 ```
+- project_root_path
+  项目根目录
+- commit_msg
+  提交信息，%d 会传入当前提交的次数
+- check_interval
+  检查提交的间隔，单位毫秒
+- username
+  提交用户名
