@@ -12,7 +12,8 @@
   "project_root_path": "Your/Project/Path",
   "commit_msg": "%d commit by auto_commit",
   "check_interval": 3000,
-  "username": "your_name"
+  "username": "your_name",
+  "watching": false
 }
 ```
 - project_root_path
@@ -23,3 +24,5 @@
   检查提交的间隔，单位毫秒
 - username
   提交用户名
+- watching
+  是否监视该项目，如果为false则不监控

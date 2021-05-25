@@ -60,6 +60,7 @@ func MkTplConfig() {
 		CommitMsg:       "%d commit by auto_commit",
 		CheckInterval:   3000,
 		Username:        "your_name",
+		Watching:        false,
 	}
 	bts, _ := json.MarshalIndent(defaultCfg, "", "	")
 	f.Write(bts)

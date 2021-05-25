@@ -22,6 +22,7 @@ func NewGit(cfg *config.Config) *Git {
 func (g *Git) SetName() error {
 	cmd := exec.Command("git", "config", "--local", "user.name", g.Cfg.Username)
 	cmd.Dir = g.Cfg.ProjectRootPath
+	fmt.Println(cmd.String())
 	return cmd.Run()
 }
 
@@ -30,6 +31,7 @@ func (g *Git) Status() error {
 	cmd := exec.Command("git", "status")
 	cmd.Dir = g.Cfg.ProjectRootPath
 	cmd.Stdout = os.Stdout
+	fmt.Println(cmd.String())
 	return cmd.Run()
 }
 
@@ -38,6 +40,7 @@ func (g *Git) Add() error {
 	cmd := exec.Command("git", "add", ".")
 	cmd.Dir = g.Cfg.ProjectRootPath
 	cmd.Stdout = os.Stdout
+	fmt.Println(cmd.String())
 	return cmd.Run()
 }
 
@@ -47,6 +50,7 @@ func (g *Git) Commit() error {
 	cmd := exec.Command("git", "commit", "-m", fmt.Sprintf(g.Cfg.CommitMsg, g.times))
 	cmd.Dir = g.Cfg.ProjectRootPath
 	cmd.Stdout = os.Stdout
+	fmt.Println(cmd.String())
 	err := cmd.Run()
 	if err != nil {
 		g.times--
@@ -59,15 +63,20 @@ func (g *Git) Push() error {
 	cmd := exec.Command("git", "push")
 	cmd.Dir = g.Cfg.ProjectRootPath
 	cmd.Stdout = os.Stdout
+	fmt.Println(cmd.String())
 	return cmd.Run()
 }
 
 func (g *Git) Run() {
+	if !g.Cfg.Watching {
+		return
+	}
 	tick := time.NewTicker(time.Duration(g.Cfg.CheckInterval) * time.Millisecond)
 	for {
 		select {
 		case <-tick.C:
 			g.SetName()
+			fmt.Println("#==============分割线===============#")
 			g.Status()
 			g.Add()
 			g.Commit()
