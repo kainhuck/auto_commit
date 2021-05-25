@@ -58,7 +58,7 @@ func MkTplConfig() {
 	defaultCfg := Config{
 		ProjectRootPath: "Your/Project/Path",
 		CommitMsg:       "%d commit by auto_commit",
-		CheckInterval:   3000,
+		CheckInterval:   10000,
 		Username:        "your_name",
 		Watching:        false,
 	}
